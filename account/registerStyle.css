@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .reg {
+    margin: 20px;
+    height: 100vh;
+  }
+  
+  .regText {
+    text-align: right;
+    padding-right: 40px;
+  }
+  
+  .regText a {
+    text-decoration: none;
+    color: rgb(84, 84, 230);
+  }
+  
+  .regForm {
+    margin: 100px auto;
+    width: 40%;
+    text-align: center;
+  }
+  
+  .regForm h2 {
+    margin: 5px 0;
+  }
+  
+  .regForm form {
+    margin: 40px 0;
+  }
+  
+  button {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 15px;
+    width: 100%;
+    background-color: blue;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin: 15px 0;
+  }
+  
+  .input-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .input-container input {
+    width: 100%;
+    padding: 10px;
+    padding-left: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .input-container .icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+  }
+  
+  .input-container .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-width: 750px) {
+    .regForm {
+      width: 60%;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .regForm {
+      width: 90%;
+    }
+  }
+  
