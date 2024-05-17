@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .backgroundImg {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .blogHead {
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+  }
+  
+  .blogDes {
+    margin-top: 20px;
+  }
+  
+  .blogDes h3 {
+    margin-top: 10px;
+  }
+  
+  .updates {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end; /* Align items to the right end */
+    margin: 10px 0;
+  }
+  .editBtn {
+    margin: 10px;
+    padding: 10px;
+    background: blue;
+    border: none;
+    border-radius: 5px;
+  }
+  .editBtn a {
+    text-decoration: none;
+    color: white;
+  }
+  .deleteBtn {
+    margin: 0 10px;
+    padding: 10px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .blogBody {
+    width: 80%;
+    margin: 20px auto;
+  }
+  
