@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create post</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../assets/css/createStyle.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="reg">
+      <p class="regText">
+        <a href="../index.html"
+          ><i class="fa-solid fa-chevron-left"></i> Home
+        </a>
+      </p>
+      <hr />
+      <div class="regForm">
+        <h2>Create Post</h2>
+        <form method="post" id="createPost">
+          <div class="input-container">
+            <input type="text" placeholder="Title" id="title" required />
+          </div>
+          <div class="input-container">
+            <input type="text" placeholder="Image URL" id="image" required />
+          </div>
+          <div class="input-container">
+            <textarea
+              id="content"
+              placeholder="Add blog content"
+              required
+            ></textarea>
+          </div>
+          <div id="loadingSpinner" style="display: none">
+            <i class="fas fa-spinner fa-spin"></i> creating...
+          </div>
+          <div id="errorMessage" style="display: none; color: red"></div>
+          <button type="submit">Create</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
