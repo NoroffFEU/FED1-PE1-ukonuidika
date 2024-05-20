@@ -1,16 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
   const hamburger = document.getElementById("hamburger");
   if (hamburger) {
-    // Check if the hamburger menu exists
     hamburger.addEventListener("click", function () {
       const menu = document.getElementById("navLinks");
       if (menu) {
-        menu.classList.toggle("active"); // Toggle the active class on the menu
+        menu.classList.toggle("active");
       }
     });
   }
 
-  const defaultUsernameText = "User"; // Default text when not logged in
+  const defaultUsernameText = "User";
   const username = localStorage.getItem("username") || defaultUsernameText;
 
   const navUsernameElement = document.querySelector("#nav-username");
@@ -19,55 +18,46 @@ document.addEventListener("DOMContentLoaded", function () {
   const navCreateElement = document.querySelector("#nav-create");
   const navUserElement = document.querySelector("#nav-user");
 
-  // Set the text of the user section
   navUsernameElement.textContent = username;
 
   if (username === defaultUsernameText) {
-    // Not logged in: hide user section, show login and signup
     navUserElement.style.display = "none";
     navCreateElement.style.display = "none";
-    navSignupElement.style.display = "block"; // Show signup
-    navLoginElement.style.display = "block"; // Show login
+    navSignupElement.style.display = "block";
+    navLoginElement.style.display = "block";
   } else {
-    // Logged in: show user section, hide login and signup
-    navUserElement.style.display = "block"; // Show user section
+    navUserElement.style.display = "block";
     navCreateElement.style.display = "block";
-    navSignupElement.style.display = "none"; // Hide signup
-    navLoginElement.style.display = "none"; // Hide login
+    navSignupElement.style.display = "none";
+    navLoginElement.style.display = "none";
   }
 
-  // Add logout functionality
   const logoutLink = document.querySelector(".logout");
   logoutLink.addEventListener("click", function () {
-    // Clear local storage and reload the page
     localStorage.removeItem("username");
-    localStorage.removeItem("accessToken"); // Optional if you're using tokens
-    window.location.reload(); // Refresh the page to reflect changes
+    localStorage.removeItem("accessToken");
+    window.location.reload();
   });
 
-  // carousel api integration
   const dataList = document.getElementById("blogCarousel");
   const name = localStorage.getItem("username") || "ukonu";
 
-  // Async function to fetch data from an API
   async function fetchData() {
     try {
       const response = await fetch(
         `https://v2.api.noroff.dev/blog/posts/${name}`
-      ); // Replace with your API endpoint
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
 
-      const responseData = await response.json(); // Convert response to JSON
-      const data = responseData.data; // Get the array from the "data" key
+      const responseData = await response.json();
+      const data = responseData.data;
 
-      // Use 'map' to create an array of list item elements
       const listItems = data.map((item) => {
         const li = document.createElement("li");
-        li.className = "carousel-card"; // Add a class for styling
+        li.className = "carousel-card";
 
-        // Create the inner content for the list item
         li.innerHTML = `
                 
         <div class="cardImg" style="background-image: url('${item.media.url}');">
@@ -84,19 +74,17 @@ document.addEventListener("DOMContentLoaded", function () {
             <h2 class="blogTitle">${item.title}</h2>
             `;
 
-        return li; // Return the list item element
+        return li;
       });
 
-      // Clear the existing content and append the new list items
-      dataList.innerHTML = ""; // Clear "Loading..." or other content
-      listItems.forEach((li) => dataList.appendChild(li)); // Add the new items
+      dataList.innerHTML = "";
+      listItems.forEach((li) => dataList.appendChild(li));
     } catch (error) {
       console.error("Error fetching data:", error);
-      dataList.innerHTML = "<li>Error loading data</li>"; // Display an error message if fetch fails
+      dataList.innerHTML = "<li>Error loading data</li>";
     }
   }
 
-  // Fetch the data and update the list
   fetchData();
 
   fetchData().then(() => {
@@ -106,113 +94,99 @@ document.addEventListener("DOMContentLoaded", function () {
     const carouselItems = document.querySelectorAll(".carousel-card");
     const totalItems = carouselItems.length;
 
-    // Function to get the number of items per view based on screen size
     function getItemsPerView() {
       const screenWidth = window.innerWidth;
       if (screenWidth < 480) {
-        // Smallest screen (example: below 480px)
         return 1;
       } else if (screenWidth < 750) {
-        // Medium screen (example: between 480px and 750px)
         return 2;
       } else {
-        // Larger screens (example: 750px and above)
         return 3;
       }
     }
 
-    // Set the initial number of items per view
     let itemsPerView = getItemsPerView();
 
-    // Recalculate item width in case it's affected by resizing
     function updateItemWidth() {
       if (carouselItems.length === 0) {
-        return 0; // Avoid accessing undefined elements
+        return 0;
       }
-      return carouselItems[0].offsetWidth; // Get the current width of an item
+      return carouselItems[0].offsetWidth;
     }
 
-    let itemWidth = updateItemWidth(); // Initial width
-    let maxOffset = (totalItems - itemsPerView) * itemWidth; // Initial maxOffset
+    let itemWidth = updateItemWidth();
+    let maxOffset = (totalItems - itemsPerView) * itemWidth;
     let currentOffset = 0;
 
-    // Function to update the track position
     function updateTrackPosition() {
       carouselTrack.style.transform = `translateX(-${currentOffset}px)`;
     }
 
-    // Function to update the carousel layout when the screen size changes
     function updateCarousel() {
-      itemsPerView = getItemsPerView(); // Update items per view
-      itemWidth = updateItemWidth(); // Update item width after resize
-      maxOffset = (totalItems - itemsPerView) * itemWidth; // Recalculate maxOffset
+      itemsPerView = getItemsPerView();
+      itemWidth = updateItemWidth();
+      maxOffset = (totalItems - itemsPerView) * itemWidth;
 
       if (currentOffset > maxOffset) {
-        currentOffset = maxOffset; // Ensure currentOffset does not exceed maxOffset
+        currentOffset = maxOffset;
       }
 
-      updateTrackPosition(); // Reposition the carousel
+      updateTrackPosition();
     }
 
-    // Move carousel left
     function moveLeft() {
-      currentOffset -= itemWidth * itemsPerView; // Move by the correct number of items
+      currentOffset -= itemWidth * itemsPerView;
       if (currentOffset < 0) {
-        currentOffset = maxOffset; // Loop to the end if beyond the first item
+        currentOffset = maxOffset;
         carouselTrack.style.transition = "none";
         updateTrackPosition();
         setTimeout(() => {
           carouselTrack.style.transition = "transform 0.5s ease-in-out";
         }, 0);
       } else {
-        updateTrackPosition(); // Normal transition
+        updateTrackPosition();
       }
     }
 
-    // Move carousel right
     function moveRight() {
-      currentOffset += itemWidth * itemsPerView; // Move by the correct number of items
+      currentOffset += itemWidth * itemsPerView;
       if (currentOffset > maxOffset) {
-        currentOffset = 0; // Loop to the beginning if beyond the last item
+        currentOffset = 0;
         carouselTrack.style.transition = "none";
         updateTrackPosition();
         setTimeout(() => {
           carouselTrack.style.transition = "transform 0.5s ease-in-out";
         }, 0);
       } else {
-        updateTrackPosition(); // Normal transition
+        updateTrackPosition();
       }
     }
 
     prevButton.addEventListener("click", moveLeft);
     nextButton.addEventListener("click", moveRight);
 
-    window.addEventListener("resize", updateCarousel); // Update carousel on screen resize
-    updateCarousel(); // Initial setup
+    window.addEventListener("resize", updateCarousel);
+    updateCarousel();
   });
 
-  // carousel api integration
   const gridList = document.getElementById("gridContainer");
 
-  // Async function to fetch data from an API
   async function fetchGridData() {
     try {
       const response = await fetch(
         `https://v2.api.noroff.dev/blog/posts/${name}`
-      ); // Replace with your API endpoint
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
 
-      const responseData = await response.json(); // Convert response to JSON
-      const data = responseData.data; // Get the array from the "data" key
+      const responseData = await response.json();
+      const data = responseData.data;
 
-      // Use 'map' to create an array of list item elements
       const gridItems = data.map((item) => {
         const div = document.createElement("div");
-        div.className = "gridCard"; // Add a class for styling
+        div.className = "gridCard";
 
-        // Create the inner content for the list item
         div.innerHTML = `
         <a href="./post/index.html?id=${item.id}"><div class="gridImg" style="background-image:url('${item.media.url}');">
         <div class="gridDescription">
@@ -223,18 +197,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
       
           `;
-        return div; // Return the list item element
+        return div;
       });
 
-      // Clear the existing content and append the new list items
-      gridList.innerHTML = ""; // Clear "Loading..." or other content
-      gridItems.forEach((div) => gridList.appendChild(div)); // Add the new items
+      gridList.innerHTML = "";
+      gridItems.forEach((div) => gridList.appendChild(div));
     } catch (error) {
       console.error("Error fetching data:", error);
-      gridList.innerHTML = "<li>Error loading data</li>"; // Display an error message if fetch fails
+      gridList.innerHTML = "<li>Error loading data</li>";
     }
   }
 
-  // Fetch the data and update the list
   fetchGridData();
 });
