@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Add event listener to the form's submission event
     const form = document.querySelector("#createPost");
-    form.addEventListener("submit", handleCreateFormSubmission); // Use the async function
+    form.addEventListener("submit", handleCreateFormSubmission);
   });
   async function handleCreateFormSubmission(event) {
-    event.preventDefault(); // Prevent the form from submitting in the traditional way
+    event.preventDefault();
   
     const form = event.target;
     const title = document.getElementById("title").value;
@@ -14,9 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const errorMessage = document.getElementById("errorMessage");
     const submitButton = form.querySelector("button[type='submit']");
   
-    loadingSpinner.style.display = "block"; // Show loading spinner
-    errorMessage.style.display = "none"; // Hide error messages
-    submitButton.disabled = true; // Disable submit button
+    loadingSpinner.style.display = "block";
+    errorMessage.style.display = "none";
+    submitButton.disabled = true;
   
     const postData = {
       title,
@@ -47,21 +46,19 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Blog post created successfully!");
         form.reset();
       } else {
-        // throw new Error("Failed to create blog post");
-        const errorData = await response.json(); // Parse the error JSON
-        const errorMessages = errorData.errors.map((e) => e.message).join(", "); // Extract error messages
+        const errorData = await response.json();
+        const errorMessages = errorData.errors.map((e) => e.message).join(", ");
   
-        // Display the error message from the server's response
         errorMessage.innerText = `Failed to create post: ${errorMessages}`;
         errorMessage.style.display = "block";
       }
     } catch (error) {
       console.error("Error creating blog post:", error);
       errorMessage.innerText = `creating post failed: ${error.message}`;
-      errorMessage.style.display = "block"; // Show error message
+      errorMessage.style.display = "block";
     } finally {
-      loadingSpinner.style.display = "none"; // Hide loading spinner
-      submitButton.disabled = false; // Re-enable the submit button
+      loadingSpinner.style.display = "none";
+      submitButton.disabled = false;
     }
   }
   
