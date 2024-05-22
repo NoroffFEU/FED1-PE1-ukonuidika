@@ -7,6 +7,7 @@
     background: #f8f7f7;
     font-family: "Roboto", sans-serif;
   }
+
   .navBar {
     background: #3f5ec4;
     height: 20px;
@@ -60,6 +61,7 @@
   .navLinks li:hover .dropdown {
     display: block;
   }
+
   .dropdown li a {
     padding: 10px;
     background: white;
@@ -78,6 +80,7 @@
   .dropdown li .logout {
     color: red;
   }
+
   .blogIntro {
     text-align: center;
     width: 40%;
@@ -88,14 +91,16 @@
     margin: 20px 0;
     font-size: 24px;
   }
+
   section {
     margin: 80px 30px;
   }
+
   .carousel {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Ensure that content doesn't spill outside */
+    overflow: hidden;
     position: relative;
   }
   
@@ -107,17 +112,17 @@
   }
   
   .carousel-track-container {
-    overflow: hidden; /* Ensure only visible items are displayed */
-    flex: 1; /* Allow the track container to expand */
+    overflow: hidden;
+    flex: 1;
   }
   
   .carousel-track {
     display: flex;
-    transition: transform 0.5s ease-in-out; /* Smooth transitions */
+    transition: transform 0.5s ease-in-out;
   }
   
   .carousel-card {
-    flex: 0 0 33.33%; /* Show three items at a time */
+    flex: 0 0 33.33%;
     background-color: #f9f9f9;
     border-radius: 5px;
     list-style: none;
@@ -166,7 +171,6 @@
     color: white;
   }
   
-  /* Button styling */
   button {
     border: none;
     background-color: #ddd;
@@ -226,6 +230,7 @@
     font-weight: bold;
     padding: 10px 0;
   }
+
   .gridDescription p {
     padding: 5px 0;
   }
@@ -241,7 +246,7 @@
     font-size: 20px;
     color: #fff;
   }
-  /*MEDIA QUERIES*/
+
   @media screen and (max-width: 750px) {
     .navBar {
       display: block;
@@ -272,10 +277,12 @@
       color: white;
       padding-left: 50px;
     }
+
     .dropdown li a:hover {
       background: #25419e;
       transition: 0.5s;
     }
+
     .blogLogo {
       display: flex;
       justify-content: space-between;
@@ -297,8 +304,9 @@
     }
   
     .carousel-card {
-      flex: 0 0 50%; /* Show two items at a time on smaller screens */
+      flex: 0 0 50%;
     }
+    
     section {
       margin: 80px 5px;
     }
@@ -320,9 +328,10 @@
       width: 60%;
     }
   }
+
   @media screen and (max-width: 480px) {
     .carousel-card {
-      flex: 0 0 100%; /* Show one item at a time on mobile devices */
+      flex: 0 0 100%;
     }
   
     section {
