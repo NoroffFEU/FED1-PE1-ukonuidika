@@ -38,12 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Function to update the blog post
 function updateBlogPost(postId, username, updatedPost) {
   const apiUrl = `https://v2.api.noroff.dev/blog/posts/${username}/${postId}`;
   const token = localStorage.getItem("token");
   fetch(apiUrl, {
-    method: "PUT", // Use PUT for updating
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -52,7 +51,7 @@ function updateBlogPost(postId, username, updatedPost) {
   })
     .then((response) => {
       if (response.ok) {
-        alert("Blog post updated successfully!"); // Feedback on success
+        alert("Blog post updated successfully!");
         window.location.href = "../index.html";
       } else {
         alert("Failed to update the post.");
@@ -60,17 +59,17 @@ function updateBlogPost(postId, username, updatedPost) {
     })
     .catch((error) => {
       console.error("Error updating the post:", error);
-      alert("Error updating the post."); // Basic error handling
+      alert("Error updating the post.");
     });
 }
 
 document.getElementById("editPostForm").addEventListener("submit", (event) => {
-  event.preventDefault(); // Prevent default form submission
+  event.preventDefault();
 
   const updatedPost = {
     title: document.getElementById("title").value,
     media: {
-      url: document.getElementById("image").value, // Correct way to set nested property
+      url: document.getElementById("image").value,
     },
     body: document.getElementById("content").value,
   };
@@ -78,6 +77,6 @@ document.getElementById("editPostForm").addEventListener("submit", (event) => {
   if (postId && username) {
     updateBlogPost(postId, username, updatedPost);
   } else {
-    alert("Invalid post ID or username."); // Error handling
+    alert("Invalid post ID or username.");
   }
 });
