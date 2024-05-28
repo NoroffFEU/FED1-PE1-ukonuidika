@@ -12,13 +12,33 @@
     <div class="regForm">
       <h2>Edit Post</h2>
       <form method="post" id="editPostForm">
-        <div class="input-container">
-          <input type="text" id="title" required>
+        <div class="editFlexContainer">
+          <div class="editFlex">
+            <h4>Visibility</h4>
+            <p>Public</p>
+          </div>
+          <hr />
+          <div class="editFlex">
+            <h4>Publish</h4>
+            <p id="publish"></p>
+          </div>
+
+          <hr />
         </div>
         <div class="input-container">
-          <input type="text" id="image" required>
+          <label for="author">AUTHOR</label>
+          <input type="text" id="author" required />
         </div>
         <div class="input-container">
+          <label for="title">TITLE</label>
+          <input type="text" id="title" required />
+        </div>
+        <div class="input-container">
+          <label for="image">URL</label>
+          <input type="text" id="image" required />
+        </div>
+        <div class="input-container">
+          <label for="content">CONTENT</label>
           <textarea id="content" required></textarea>
         </div>
         <div id="loadingSpinner" style="display: none">
@@ -28,6 +48,6 @@
         <button type="submit">Update Post</button>
       </form>
     </div>
-    <script src="../assets/script/editScript.js"></script>
+    <script src="./editScript.js"></script>
   </body>
 </html>
