@@ -3,7 +3,7 @@
 
 ## Title:
 
-My Blog
+## My Blog
 
 ## - Overview:
 A responsive  application that allows users to view dynamic blog posts.
