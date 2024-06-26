@@ -1,5 +1,7 @@
 ## My Blog
 
+<img src="./assets/images/blog.png" ait="blog" style="width: 80%; margin:0 auto;">
+
 A responsive  application that allows users to view dynamic blog posts.
 
 [Live site](https://chimerical-fairy-ad1735.netlify.app/)
