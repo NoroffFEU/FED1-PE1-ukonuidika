@@ -1,6 +1,6 @@
 ## My Blog
 
-<img src="./assets/images/blog.png" ait="blog" style="width: 80%; margin:0 auto;">
+<img src="./assets/images/blog.png" ait="blog" style="width: 80%;">
 
 A responsive  application that allows users to view dynamic blog posts.
 
